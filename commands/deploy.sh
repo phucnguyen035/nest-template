@@ -19,7 +19,7 @@ then
   docker service update --force $EXISTING
 else
   echo 'Running service for the first time'
-  docker service create --name $NAME -p $PORT:3000 --restart-condition=on-failure $IMAGE:$TAG
+  docker service create --name $NAME -p $PORT:3000 --restart-condition on-failure --replicas-max-per-node 3 $IMAGE:$TAG
 fi
 
 echo 'Removing dangling images'
