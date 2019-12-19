@@ -13,13 +13,21 @@ npm run build
 echo 'Building docker image'
 docker build --build-arg NODE_ENV=production -t $IMAGE:$TAG $(dirname "pwd")
 
+# Using docker swarm to deploy
+# Make sure swarm mode is active in your server
 if [ $EXISTING ]
 then
   echo 'Updating existing service'
   docker service update --force $EXISTING
 else
   echo 'Running service for the first time'
-  docker service create --name $NAME -p $PORT:3000 --restart-condition on-failure --replicas-max-per-node 3 $IMAGE:$TAG
+  docker service create \
+    --name $NAME \
+    -p $PORT:3000 \
+    --restart-condition on-failure \
+    --replicas-max-per-node 3 \
+    # --replicas 3 # Use this to set initial scale
+    $IMAGE:$TAG
 fi
 
 echo 'Removing dangling images'
