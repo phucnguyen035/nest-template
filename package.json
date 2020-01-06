@@ -21,10 +21,10 @@
     "deploy": "sh ./commands/deploy.sh"
   },
   "dependencies": {
-    "@nestjs/common": "^6.10.13",
-    "@nestjs/config": "^0.0.7",
-    "@nestjs/core": "^6.10.13",
-    "@nestjs/platform-express": "^6.10.13",
+    "@nestjs/common": "^6.10.14",
+    "@nestjs/config": "^0.0.8",
+    "@nestjs/core": "^6.10.14",
+    "@nestjs/platform-express": "^6.10.14",
     "helmet": "^3.21.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
