@@ -11,7 +11,7 @@ echo 'Building project'
 npm run build
 
 echo 'Building docker image'
-docker build --build-arg NODE_ENV=production -t $IMAGE:$TAG $(dirname "pwd")
+docker build --build-arg NODE_ENV=production -t $IMAGE:$TAG .
 
 # Using docker swarm to deploy
 # Make sure swarm mode is active in your server
