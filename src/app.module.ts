@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { appConfig, databaseConfig } from './config';
 import { DatabaseModule } from './modules/database/database.module';
-import { ConfigModule } from '@nestjs/config';
-import databaseConfig from './config/database.config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ load: [databaseConfig], isGlobal: true }),
+    ConfigModule.forRoot({ load: [appConfig, databaseConfig], isGlobal: true }),
     DatabaseModule,
   ],
   controllers: [AppController],
