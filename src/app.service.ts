@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { hostname } from 'os';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService {
+  constructor(private readonly configService: ConfigService) {}
+
   getHello(): string {
-    return `Environment: ${
-      process.env.NODE_ENV
-    }. Current node is: ${hostname()}. It is currently: ${new Date().toLocaleString(
-      'vi-vn',
-    )}`;
+    const env = this.configService.get('app.environment');
+
+    return `Environment: ${env}`;
   }
 }
