@@ -7,11 +7,8 @@ PORT=3000 # Port used for exposing service to the public
 TAG=$(git rev-parse --short HEAD) # Using latest git commit hash as tag
 EXISTING=$(docker service ls -q -f name=$NAME) # Check if service already exists
 
-echo 'Building project'
-npm run build
-
 echo 'Building docker image'
-docker build --build-arg NODE_ENV=production -t $IMAGE:$TAG .
+docker build -t $IMAGE:$TAG .
 
 # Using docker swarm to deploy
 # Make sure swarm mode is active in your server

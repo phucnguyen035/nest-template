@@ -1,21 +1,32 @@
-# build stage
-FROM node:lts-alpine AS builder
+# Base development
+FROM node:lts-alpine AS dev
 
-ARG NODE_ENV=development
-ENV NODE_ENV=${NODE_ENV}
-
-COPY package.json yarn.lock ./
-RUN yarn
-
-# run stage
-FROM node:lts-alpine
-
-USER node
 WORKDIR /usr/src/app
 
-COPY --from=builder node_modules node_modules
-COPY --chown=node:node . .
+COPY package.json yarn.lock ./
 
-EXPOSE 3000
+RUN yarn
 
-CMD [ "node", "dist/main" ]
+COPY . .
+
+RUN yarn build
+
+# Production
+FROM node:lts-alpine AS prod
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY package.json yarn.lock ./
+
+RUN yarn
+
+COPY . .
+
+COPY --chown=node:user --from=dev /usr/src/app/dist ./dist
+
+USER node
+
+CMD ["node", "dist/main"]
