@@ -25,7 +25,7 @@ RUN yarn
 
 COPY . .
 
-COPY --chown=node:user --from=dev /usr/src/app/dist ./dist
+COPY --chown=node:node --from=dev /usr/src/app/dist ./dist
 
 USER node
 
