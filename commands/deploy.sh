@@ -1,4 +1,4 @@
-# Change these variables for each project 
+# Change these variables for each project
 NAME="${NAME:-api}" # Service name
 PORT="${PORT:-3000}" # Port used for exposing service to the public
 
@@ -20,8 +20,8 @@ then
   docker service update $EXISTING
 else
   echo 'Running service for the first time'
-  docker service create --name api \
-    -p 3000:3000 \
+  docker service create --name $NAME \
+    -p $PORT:3000 \
     -e VIRTUAL_HOST=api.nguyenhphuc.com \
     -e VIRTUAL_PORT=$PORT \
     -e LETSENCRYPT_HOST=api.nguyenhphuc.com \
