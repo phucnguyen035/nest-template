@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout master
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
 
       - name: Build and push Docker images
         uses: docker/build-push-action@master
@@ -35,14 +35,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ secrets.DOCKER_USERNAME }}/test-api
           tag_with_ref: true
-          tag_with_sha: true
 
   deploy:
     name: Deploy to DigitalOcean
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: SSH into DO and test
+      - name: SSH into DO and run script in workspace folder
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
