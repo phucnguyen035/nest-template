@@ -43,6 +43,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          debug: true
           script: |
             whoami
             ls -al
