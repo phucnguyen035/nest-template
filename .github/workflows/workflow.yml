@@ -49,5 +49,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            whoami
-            ls -al
+          cd nest-template
+          sh commands/deploy.sh

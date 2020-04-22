@@ -5,7 +5,10 @@ PORT=3000 # Port used for exposing service to the public
 # Constant values, don't change if you don't need to
 EXISTING=$(docker service ls -q -f name=$NAME) # Check if service already exists
 
-echo 'Pull image from registry'
+echo 'Pulling latest changes from git'
+git pull
+
+echo 'Pulling image from registry'
 docker pull hoangphuc0305/test-api:latest
 
 # Using docker swarm to deploy
@@ -19,6 +22,10 @@ else
   docker service create \
     --name $NAME \
     -p $PORT:3000 \
+    -e VIRTUAL_HOST=api.nguyenhphuc.com \ # Comment out if not using nginx let's encrypt companion
+    -e VIRTUAL_PORT=$PORT \ # Comment out if not using nginx let's encrypt companion
+    -e LETSENCRYPT_HOST=api.nguyenhphuc.com \ # Comment out if not using nginx let's encrypt companion
+    -e LETSENCRYPT_EMAIL=nguyen.hphuc035@gmail.com # Comment out if not using nginx let's encrypt companion
     --restart-condition unless-stopped \
     # --replicas-max-per-node 3 \
     # --replicas 3 # Use this to set initial scale
