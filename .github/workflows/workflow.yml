@@ -22,8 +22,12 @@ jobs:
 
   build:
     name: Build, push image to Docker Hub
+    needs: test
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+
       - name: Build and push Docker images
         uses: docker/build-push-action@master
         with:
@@ -35,6 +39,7 @@ jobs:
 
   deploy:
     name: Deploy to DigitalOcean
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: SSH into DO and test
@@ -43,7 +48,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          debug: true
           script: |
             whoami
             ls -al
