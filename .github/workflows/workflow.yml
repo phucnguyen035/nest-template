@@ -1,0 +1,47 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test current build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@master
+
+      - name: Build services from docker compose file
+        run: docker-compose up --build
+
+      - name: Run unit tests
+        run: docker-compose run haha yarn test
+
+      - name: Run e2e tests
+        run: docker-compose run haha yarn test:e2e
+
+  build:
+    name: Build, push image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and push Docker images
+        uses: docker/build-push-action@master
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ secrets.DOCKER_USERNAME }}/test-api
+          tag_with_ref: true
+          tag_with_sha: true
+
+  deploy:
+    name: Deploy to DigitalOcean
+    steps:
+      - name: SSH into DO and test
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+          whoami
+          ls -al
