@@ -26,6 +26,7 @@ else
     -e VIRTUAL_PORT=$PORT \
     -e LETSENCRYPT_HOST=api.nguyenhphuc.com \
     -e LETSENCRYPT_EMAIL=nguyen.hphuc035@gmail.com \
+    --network webproxy \
     --restart-condition on-failure \
     hoangphuc0305/test-api:latest
     # --replicas-max-per-node 3 \
