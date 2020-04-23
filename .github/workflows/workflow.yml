@@ -37,11 +37,11 @@ jobs:
           tag_with_ref: true
 
   deploy:
-    name: Deploy to DigitalOcean
+    name: Deploy to production server
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: SSH into DO and run script in workspace folder
+      - name: SSH into production server and run deploy script in workspace folder
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -49,4 +49,7 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             cd nest-template
+            echo 'Pulling latest changes'
+            git pull
+            echo 'Running deploy script'
             sh commands/deploy.sh

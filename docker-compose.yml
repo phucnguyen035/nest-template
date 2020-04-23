@@ -1,12 +1,14 @@
 version: '3.7'
 
 services:
-  haha:
+  api:
     build:
       context: .
+      args:
+        ENV: development
       target: dev
     ports:
-      - 3000:3000
+      - '3000:3000'
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
