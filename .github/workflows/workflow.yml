@@ -15,10 +15,10 @@ jobs:
         run: docker-compose up --build
 
       - name: Run unit tests
-        run: docker-compose run haha yarn test
+        run: docker-compose run api yarn test
 
       - name: Run e2e tests
-        run: docker-compose run haha yarn test:e2e
+        run: docker-compose run api yarn test:e2e
 
   build:
     name: Build, push image to Docker Hub
