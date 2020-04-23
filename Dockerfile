@@ -1,6 +1,8 @@
 # Base development
 FROM node:lts-alpine AS dev
 
+ARG ENV
+
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
@@ -9,7 +11,9 @@ RUN yarn
 
 COPY . .
 
-RUN yarn build
+EXPOSE 3000
+
+RUN if [ "$ENV" != "development" ]; then yarn build ; fi
 
 # Production
 FROM node:lts-alpine AS prod
