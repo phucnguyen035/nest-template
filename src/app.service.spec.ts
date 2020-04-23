@@ -19,11 +19,11 @@ describe('AppService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should return the message with the current environment', () => {
+  it('should return the current environment', () => {
     const env = 'test';
 
     jest.spyOn(configService, 'get').mockReturnValueOnce(env);
 
-    expect(service.getHello()).toContain(env);
+    expect(service.getHello()).toHaveProperty('environment', env);
   });
 });
