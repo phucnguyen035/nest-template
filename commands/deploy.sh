@@ -14,6 +14,7 @@ if [ $EXISTING ]
 then
   echo 'Updating existing container'
   docker container stop $EXISTING
+  docker container prune -f
 fi
 
 echo 'Creating and running new container'
@@ -23,6 +24,6 @@ docker container run -dit --name $NAME \
   -e VIRTUAL_PORT=$PORT \
   -e LETSENCRYPT_HOST=api.nguyenhphuc.com \
   -e LETSENCRYPT_EMAIL=nguyen.hphuc035@gmail.com \
-  --network=webproxy \ 
+  --network=webproxy \
   --restart=unless-stopped \
   hoangphuc0305/test-api:latest
