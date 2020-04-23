@@ -1,7 +1,7 @@
 {
-  "name": "docker",
+  "name": "nestjs-template",
   "version": "0.0.1",
-  "description": "",
+  "description": "Bare Nest.JS template with basic deploy plans to get started",
   "author": "",
   "license": "MIT",
   "scripts": {
