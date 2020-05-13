@@ -18,7 +18,7 @@ NODE_ENV=production yarn
 # Reload service if existing, creating new otherwise
 if [[ $(pm2 show $service_name) ]]; then
   echo "Reloading existing service '$service_name'"
-  pm2 reload $service_name
+  pm2 reload --update-env $service_name
 else
   echo "Creating new service '$service_name'"
   pm2 start dist/main.js -n $service_name -i 1
