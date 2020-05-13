@@ -56,5 +56,5 @@ jobs:
           #   echo 'Running deploy script'
           #   sh commands/deploy.sh
           script: |
-          cd nest-template
-          sh deploy.sh
+            cd nest-template
+            sh deploy.sh
