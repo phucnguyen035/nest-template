@@ -57,5 +57,7 @@ jobs:
           #   echo 'Running deploy script'
           #   sh commands/deploy.sh
           script: |
+            source ~/.bash_profile
+            pm2 -v
             cd nest-template
             sh deploy.sh

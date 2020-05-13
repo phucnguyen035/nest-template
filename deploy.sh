@@ -14,10 +14,6 @@ yarn build
 # Install dependencies again to purge dev dependencies
 NODE_ENV=production yarn
 
-# Make sure pm2 is included in PATH
-source ~/.profile
-pm2 ls
-
 # Reload service if existing, creating new otherwise
 if [[ $(pm2 show $service_name) ]]; then
   echo "Reloading existing service '$service_name'"
