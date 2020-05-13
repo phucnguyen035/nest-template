@@ -1,6 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppService } from './app.service';
+import os from 'os';
 
 describe('AppService', () => {
   let service: AppService;
@@ -19,11 +20,16 @@ describe('AppService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should return the current environment', () => {
+  it('should return the current environment and host name', () => {
     const env = 'test';
+    const hostname = 'abc';
 
     jest.spyOn(configService, 'get').mockReturnValueOnce(env);
+    jest.spyOn(os, 'hostname').mockReturnValueOnce(hostname);
 
-    expect(service.getHello()).toHaveProperty('environment', env);
+    const res = service.getHello();
+
+    expect(res).toHaveProperty('environment', env);
+    expect(res).toHaveProperty('hostname', hostname);
   });
 });

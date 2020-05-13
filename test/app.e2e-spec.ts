@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { AppModule } from './../src/app.module';
+import os from 'os';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -16,8 +17,11 @@ describe('AppController (e2e)', () => {
   });
 
   it('/ (GET)', () => {
+    const hostname = 'abc';
+    jest.spyOn(os, 'hostname').mockReturnValueOnce(hostname);
+
     return request(app.getHttpServer())
       .get('/')
-      .expect(200, { environment: 'test' });
+      .expect(200, { environment: 'test', hostname });
   });
 });
