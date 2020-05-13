@@ -39,7 +39,8 @@ jobs:
 
   deploy:
     name: Deploy to production server
-    needs: build
+    # needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: SSH into production server and run deploy script in workspace folder
