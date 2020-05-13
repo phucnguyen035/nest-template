@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 # INFO: Replace service name
 service_name=${1:-nest}
 

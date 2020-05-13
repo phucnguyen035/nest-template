@@ -60,4 +60,4 @@ jobs:
             source ~/.bash_profile
             pm2 -v
             cd nest-template
-            sh deploy.sh
+            bash ./deploy.sh
