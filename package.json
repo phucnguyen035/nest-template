@@ -1,6 +1,6 @@
 {
   "name": "nestjs-template",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Bare Nest.JS template with basic deploy plans to get started",
   "author": "",
   "license": "MIT",
