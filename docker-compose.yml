@@ -5,10 +5,10 @@ services:
     build:
       context: .
       args:
-        ENV: development
-      target: dev
+        NODE_ENV: development
+    command: yarn start:dev
     ports:
       - '3000:3000'
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/home/node/app
+      - /home/node/app/node_modules
