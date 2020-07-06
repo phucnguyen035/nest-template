@@ -1,7 +1,7 @@
+import os from 'os';
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppService } from './app.service';
-import os from 'os';
 
 describe('AppService', () => {
   let service: AppService;

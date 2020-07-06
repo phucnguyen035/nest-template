@@ -1,6 +1,6 @@
 {
   "name": "nestjs-template",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Bare Nest.JS template with basic deploy plans to get started",
   "author": "",
   "license": "MIT",
@@ -23,12 +23,17 @@
     "@nestjs/common": "^7.0.8",
     "@nestjs/config": "^0.4.0",
     "@nestjs/core": "^7.0.8",
+    "@nestjs/jwt": "^7.0.0",
+    "@nestjs/passport": "^7.0.0",
     "@nestjs/platform-express": "^7.0.8",
     "helmet": "^3.22.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.5",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.1.2",
@@ -38,8 +43,11 @@
     "@types/helmet": "^0.0.45",
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.2",
+    "@types/passport": "^1.0.3",
+    "@types/passport-jwt": "^3.0.3",
     "@types/serve-favicon": "^2.5.0",
     "@types/supertest": "^2.0.8",
+    "@types/uuid": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "@typescript-eslint/parser": "^2.23.0",
     "eslint": "^6.8.0",

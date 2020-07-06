@@ -1,6 +1,6 @@
+import os from 'os';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import os from 'os';
 
 @Injectable()
 export class AppService {
